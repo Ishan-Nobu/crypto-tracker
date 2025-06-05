@@ -1,12 +1,12 @@
 import { useContext, useEffect, useState } from "react"
 import { CurrencyContext } from "./CurrencyContext";
 import { getCoinData } from "../utils/api";
-import { TextField, ThemeProvider, createTheme, TableContainer, TableHead, TableRow, TableCell, TableBody, Pagination, Paper, Table } from "@mui/material";
+import { TextField, ThemeProvider, createTheme, TableContainer, TableHead, TableRow, TableCell, TableBody, Pagination, Paper, Table, LinearProgress } from "@mui/material";
 import { formatCurrency, percentageChange } from "../utils/config";
 import { useNavigate } from "react-router-dom";
 
 
-function CoinsTable() {
+function CryptoTable() {
 
     const darkTheme = createTheme({
         palette: {
@@ -26,7 +26,7 @@ function CoinsTable() {
     }, [currency])
 
     //fetch all the coins based on market cap
-    const fetchCoinsList = async () => {
+    const fetchCoinsList = () => {
         setLoading(true);
         getCoinData('coins/markets',
             { vs_currency: currency, order: "market_cap_desc", per_page: 250, page: 1, sparkline: false })
@@ -43,15 +43,15 @@ function CoinsTable() {
 
     return (
         <div className="flex flex-col items-center justify-center gap-8 mt-5">
-            <h1 className="text-white font-bold text-2xl">Cryptocurrency prices by market cap</h1>
+            <h1 className="text-white font-bold text-2xl text-center">Cryptocurrency prices by market cap</h1>
             <ThemeProvider theme={darkTheme}>
                 <TextField label="Search for any Cryptocurrency"
                     variant="outlined"
-                    sx={{ width: "35%" }}
+                    className="md:w-1/2 w-2/3"
                     onChange={(e) => setSearchValue(e.target.value)} />
                 <TableContainer component={Paper} sx={{width: "80%"}}>
                     {
-                        loading ? (<p>LOADING.....</p>) : (   // change loading to linear progress MUI component maybe
+                        loading ? (<LinearProgress sx={{backgroundColor: "gold"}}/>) : (   // change loading to linear progress MUI component maybe
                             <Table>
                                 <TableHead sx={{backgroundColor: "gold"}}>
                                     <TableRow sx={{height: 75}}>
@@ -67,7 +67,7 @@ function CoinsTable() {
                                         return (
                                             <TableRow key={rowCoin?.id} 
                                                 className="cursor-pointer hover:bg-gray-600 ease-in-out"
-                                                onClick={() => navigate(`/currency/${rowCoin?.id}`)}>
+                                                onClick={() => navigate(`/crypto/${rowCoin?.id}`)}>
                                                 <TableCell component="th" sx={{display: "flex", gap: 5}}>
                                                     <img src={rowCoin?.image} alt={rowCoin?.name} className="h-15 mb-2"/>
                                                     <div className="flex flex-col gap-2">
@@ -103,4 +103,4 @@ function CoinsTable() {
     )
 }
 
-export default CoinsTable
+export default CryptoTable

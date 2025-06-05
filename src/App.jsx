@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import HomePage from "./pages/HomePage"
-import CurrencyPage from "./pages/CurrencyPage"
+import CyrptoPage from "./pages/CryptoPage"
 import Header from "./components/header"
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Header/>}>
             <Route index element={<HomePage/>}/>
-            <Route path="/currency/:id" element={<CurrencyPage/>}/>
+            <Route path="/crypto/:id" element={<CyrptoPage/>}/>
           </Route>
           <Route path="*" element={<div>Page Not Found</div>}/>
         </Routes>

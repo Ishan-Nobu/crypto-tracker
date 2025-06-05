@@ -17,7 +17,7 @@ function Hero() {
   }, [currency])
 
   //fetch trending coins
-  const fetchTrendingCoins = async () => {
+  const fetchTrendingCoins = () => {
     getCoinData('coins/markets',
       { vs_currency: currency, order: "market_cap_desc", per_page: 10, page: 1, sparkline: false, price_change_percentage: "24h" })
       .then(result => setTrendingData(result.data));
@@ -27,8 +27,8 @@ function Hero() {
   const items = trendingData.map((coin) => {
     return (
       <div className="flex flex-col items-center uppercase gap-5 pt-3">
-        <img src={coin?.image} alt={coin?.name} className="h-30 mb-2 cursor-pointer hover:scale-120 ease-in-out" 
-          onClick={() => navigate(`/currency/${coin?.id}`)} />
+        <img src={coin?.image} alt={coin?.name} className="h-30 mb-2 cursor-pointer hover:scale-120 ease-in-out" loading="lazy" 
+          onClick={() => navigate(`/crypto/${coin?.id}`)} />
         <span>{coin?.symbol} &nbsp; {percentageChange(coin?.price_change_percentage_24h.toFixed(2))} </span>
         <span>{sign} {formatCurrency(coin?.current_price.toFixed(2))}</span>
       </div>

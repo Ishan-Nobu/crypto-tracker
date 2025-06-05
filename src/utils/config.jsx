@@ -9,3 +9,22 @@ export const percentageChange = (priceChange) =>
     else if (priceChange == 0) return <span className="text-white" >{priceChange}%</span>
     else return <span className="text-red-500">{priceChange}%</span> 
 }
+
+export const daysData = [
+  {
+    label: "24 Hours",
+    totalDays: 1,
+  },
+  {
+    label: "30 Days",
+    totalDays: 30,
+  },
+  {
+    label: "3 Months",
+    totalDays: 90,
+  },
+  {
+    label: "1 Year",
+    totalDays: 365,
+  },
+];

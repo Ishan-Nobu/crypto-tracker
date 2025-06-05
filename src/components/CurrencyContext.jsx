@@ -1,6 +1,5 @@
 import { createContext, useEffect, useState } from "react"
 
-
 export const CurrencyContext = createContext();
 
 function CurrencyContextProvider({ children }) {

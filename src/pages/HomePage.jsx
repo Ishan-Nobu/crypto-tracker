@@ -1,4 +1,4 @@
-import CoinsTable from "../components/CoinsTable"
+import CryptoTable from "../components/CryptoTable"
 import Hero from "../components/Hero"
 
 
@@ -6,7 +6,7 @@ function HomePage(){
   return (
     <div>
       <Hero/>
-      <CoinsTable/>
+      <CryptoTable/>
     </div>
   )
 }
