@@ -1,7 +1,9 @@
 import { AppBar, Toolbar, Typography, Select, Container, MenuItem, ThemeProvider, createTheme } from "@mui/material"
 import { Outlet, useNavigate } from "react-router-dom"
-import { CurrencyContext } from "./CurrencyContext"
 import { useContext } from "react";
+import { GlobalContext } from "./GlobalContext";
+import AuthModal from "./Auth/AuthModal";
+import Sidebar from "./Auth/Sidebar";
 
 function Header() {
 
@@ -10,10 +12,9 @@ function Header() {
       mode: 'dark',
     },
   });
-
   const navigate = useNavigate();
-  const { currency, setCurrency } = useContext(CurrencyContext);
-  
+  const { currency, setCurrency, user } = useContext(GlobalContext);
+
   return (
     <>
       <ThemeProvider theme={darkTheme}>
@@ -28,6 +29,7 @@ function Header() {
                 <MenuItem value={"USD"}>USD</MenuItem>
                 <MenuItem value={"JPY"}>JPY</MenuItem>
               </Select>
+              {user ? <Sidebar/> : <AuthModal/>}  
             </Toolbar>
           </Container>
         </AppBar>

@@ -1,11 +1,11 @@
 import { CircularProgress, createTheme, ThemeProvider } from "@mui/material"
 import { useEffect, useState, useContext } from "react"
-import { CurrencyContext } from "./CurrencyContext"
 import { Line } from "react-chartjs-2"
 import { getCoinData } from "../utils/api"
 import { CategoryScale, Chart as ChartJS, LinearScale, PointElement, LineElement, Legend, Tooltip, Title } from "chart.js";
 import { daysData } from "../utils/config"
 import debounce from "lodash.debounce"
+import { GlobalContext } from "./GlobalContext"
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Legend, Tooltip, Title);
 ChartJS.defaults.font.size = 12;
@@ -26,7 +26,7 @@ function CryptoChart({ crypto }) {
     const [historicalData, setHistoricalData] = useState([]);
     const [days, setDays] = useState(1);
     const [loading, setLoading] = useState(false)
-    const { currency } = useContext(CurrencyContext);
+    const { currency } = useContext(GlobalContext);
 
     useEffect(() => {
         fetchHistoricalData();

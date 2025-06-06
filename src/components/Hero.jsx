@@ -1,14 +1,14 @@
 import { useContext, useEffect, useState } from "react"
 import { getCoinData } from "../utils/api"
-import { CurrencyContext } from "./CurrencyContext"
 import AliceCarousel from 'react-alice-carousel';
 import { useNavigate } from "react-router-dom";
 import { formatCurrency, percentageChange } from "../utils/config";
+import { GlobalContext } from "./GlobalContext";
 
 
 function Hero() {
 
-  const { currency, sign } = useContext(CurrencyContext)
+  const { currency, sign } = useContext(GlobalContext)
   const [trendingData, setTrendingData] = useState([]);
   const navigate =  useNavigate();
 

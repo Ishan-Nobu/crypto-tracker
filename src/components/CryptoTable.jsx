@@ -1,9 +1,8 @@
-import { useContext, useEffect, useState } from "react"
-import { CurrencyContext } from "./CurrencyContext";
-import { getCoinData } from "../utils/api";
+import { useContext, useState } from "react"
 import { TextField, ThemeProvider, createTheme, TableContainer, TableHead, TableRow, TableCell, TableBody, Pagination, Paper, Table, LinearProgress } from "@mui/material";
 import { formatCurrency, percentageChange } from "../utils/config";
 import { useNavigate } from "react-router-dom";
+import { GlobalContext } from "./GlobalContext";
 
 
 function CryptoTable() {
@@ -14,25 +13,10 @@ function CryptoTable() {
         },
     });
 
-    const [coinsList, setCoinsList] = useState([]);
-    const [loading, setLoading] = useState(false);
     const [searchValue, setSearchValue] = useState("");
     const [page, setPage] = useState(1);
-    const { currency, sign } = useContext(CurrencyContext);
+    const { sign, coinsList, loading } = useContext(GlobalContext);
     const navigate =  useNavigate();
-
-    useEffect(() => {
-        fetchCoinsList();
-    }, [currency])
-
-    //fetch all the coins based on market cap
-    const fetchCoinsList = () => {
-        setLoading(true);
-        getCoinData('coins/markets',
-            { vs_currency: currency, order: "market_cap_desc", per_page: 250, page: 1, sparkline: false })
-            .then(result => setCoinsList(result.data));
-        setLoading(false);
-    }
 
     // filter the array of coins depending on the search value
     const handleSearchFilter = () => {
@@ -49,10 +33,10 @@ function CryptoTable() {
                     variant="outlined"
                     className="md:w-1/2 w-2/3"
                     onChange={(e) => setSearchValue(e.target.value)} />
-                <TableContainer component={Paper} sx={{width: "80%"}}>
+                <TableContainer component={Paper} sx={{width: "80%", borderRadius: 2}}>
                     {
-                        loading ? (<LinearProgress sx={{backgroundColor: "gold"}}/>) : (   // change loading to linear progress MUI component maybe
-                            <Table>
+                        loading ? (<LinearProgress sx={{backgroundColor: "gold"}}/>) : (   
+                            <Table sx={{width: "100%%", margin: "auto"}}>
                                 <TableHead sx={{backgroundColor: "gold"}}>
                                     <TableRow sx={{height: 75}}>
                                     {["Coin", "Price", "24-hour Change", "Market Cap"].map((head) => (
@@ -68,21 +52,21 @@ function CryptoTable() {
                                             <TableRow key={rowCoin?.id} 
                                                 className="cursor-pointer hover:bg-gray-600 ease-in-out"
                                                 onClick={() => navigate(`/crypto/${rowCoin?.id}`)}>
-                                                <TableCell component="th" sx={{display: "flex", gap: 5}}>
-                                                    <img src={rowCoin?.image} alt={rowCoin?.name} className="h-15 mb-2"/>
-                                                    <div className="flex flex-col gap-2">
-                                                        <span className="text-lg">{rowCoin?.name}</span>
-                                                        <span className="uppercase text-lg">{rowCoin?.symbol}</span>
+                                                <TableCell component="th" sx={{display: "flex", gap: 1}}>
+                                                    <img src={rowCoin?.image} alt={rowCoin?.name} className="md:h-15 md:mb-2 h-10 mb-1"/>
+                                                    <div className="flex flex-col md:gap-2">
+                                                        <span className="md:text-lg text-sm">{rowCoin?.name}</span>
+                                                        <span className="uppercase md:text-lg text-sm">{rowCoin?.symbol}</span>
                                                     </div>
                                                 </TableCell>
                                                 <TableCell align="right">
                                                     {sign} {formatCurrency(rowCoin?.current_price.toFixed(2))}
                                                 </TableCell>
                                                 <TableCell align="right">
-                                                    {percentageChange(rowCoin.price_change_percentage_24h.toFixed(2))}
+                                                    {percentageChange(rowCoin?.price_change_percentage_24h.toFixed(2))}
                                                 </TableCell>
                                                 <TableCell align="right">
-                                                    {sign} {formatCurrency(rowCoin.market_cap)}
+                                                    {sign} {formatCurrency(rowCoin?.market_cap.toString().slice(0, -6))}
                                                 </TableCell>
                                             </TableRow>
                                         )

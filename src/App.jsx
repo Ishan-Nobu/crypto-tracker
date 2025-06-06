@@ -1,7 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import HomePage from "./pages/HomePage"
-import CyrptoPage from "./pages/CryptoPage"
-import Header from "./components/header"
+import CryptoPage from "./pages/CryptoPage"
+import Header from "./components/Header"
+import { ToastContainer } from 'react-toastify'
 
 function App() {
 
@@ -11,11 +12,12 @@ function App() {
         <Routes>
           <Route path="/" element={<Header/>}>
             <Route index element={<HomePage/>}/>
-            <Route path="/crypto/:id" element={<CyrptoPage/>}/>
+            <Route path="/crypto/:id" element={<CryptoPage/>}/>
           </Route>
           <Route path="*" element={<div>Page Not Found</div>}/>
         </Routes>
       </BrowserRouter>
+      <ToastContainer/>
     </div>
   )
 }
