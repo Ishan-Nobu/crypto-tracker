@@ -61,7 +61,7 @@ function CryptoPage() {
   if (!coin) return <LinearProgress style={{ backgroundColor: "gold" }} />
 
   return (
-    <div className="flex flex-col md:h-full md:flex-row items-start justify-center gap-2 mt-5">
+    <div className="flex flex-col md:h-screen md:flex-row items-start justify-center gap-2 mt-5">
       <div className="md:w-3/10 w-full flex flex-col items-center justify-center gap-5 p-4
            border-gray-600 md:border-r-1 md:border-b-0 border-b-1 border-r-0">
         <img src={coin?.image.large} alt={coin?.name} className="md:w-50 md:h-50 w-35 h-35" />
@@ -73,13 +73,13 @@ function CryptoPage() {
           </span>  {sign} {formatCurrency(coin?.market_data.current_price[currency.toLowerCase()])}</p>
           <p className="md:text-2xl text-lg"> <span className="font-medium">Market Cap:
           </span>  {sign} {formatCurrency(coin?.market_data.market_cap[currency.toLowerCase()])}</p>
-          <button className={inFavourites ? `bg-red-500 w-full md:h-15 h-10 md:p-2 p-1 rounded-lg border-3 border-black
+          {user && <button className={inFavourites ? `bg-red-500 w-full md:h-15 h-10 md:p-2 p-1 rounded-lg border-3 border-black
            text-black md:text-xl text-md font-bold cursor-pointer hover:bg-red-900 ease-in-out`
             : `bg-amber-300 w-full md:h-15 h-10 md:p-2 p-1 rounded-lg border-2 border-black
              text-black md:text-xl text-md font-bold cursor-pointer hover:bg-amber-500 ease-in-out`}
             onClick={inFavourites ? removeFromFavourites : addToFavourites}>
             {inFavourites ? "Remove from favourites" : "Add to favourites"}
-          </button>
+          </button>}
         </div>
       </div>
       <CryptoChart crypto={coin} />
