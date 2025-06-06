@@ -58,7 +58,7 @@ function CryptoChart({ crypto }) {
 
     return (
         <ThemeProvider theme={darkTheme}>
-        <div className="flex flex-col md:w-7/10 w-full md:h-170 h-100 items-center justify-center md:gap-10 p-10 gap-5">
+        <div className="flex flex-col md:w-7/10 w-full md:h-150 h-100 items-center justify-center md:gap-10 p-10 gap-5">
             {(loading === true) ? <CircularProgress color="gold" /> :
                 <Line
                     data={{
