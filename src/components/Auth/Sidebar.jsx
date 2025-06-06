@@ -63,7 +63,7 @@ function Sidebar() {
                                                 <div key={coin?.id} className="md:w-full w-full flex md:flex-row flex-col justify-between items-center
                                                  bg-amber-300 text-black rounded-md mb-3 p-5 border-2 border-black">
                                                     <span className="cursor-pointer hover:text-blue-800 hover:underline" 
-                                                    onClick={() => {navigate(`/crypto/${coin?.id}`); window.location.reload()}} >{coin?.name}</span>
+                                                    onClick={() => navigate(`/crypto/${coin?.id}`)} >{coin?.name}</span>
                                                     <span className="flex md:flex-row flex-col items-center gap-2">
                                                         {sign} {formatCurrency(coin?.current_price.toFixed(2))}
                                                         <AiFillDelete className="cursor-pointer hover:bg-red-700 rounded-lg"
