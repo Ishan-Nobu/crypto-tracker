@@ -62,12 +62,12 @@ function CryptoPage() {
 
   return (
     <div className="flex flex-col md:h-screen md:flex-row items-start justify-center gap-2 mt-5">
-      <div className="md:w-3/10 w-full flex flex-col items-center justify-center gap-5 p-4
+      <div className="md:w-3/10 w-full h-4/5 flex flex-col items-center justify-center gap-3 p-4
            border-gray-600 md:border-r-1 md:border-b-0 border-b-1 border-r-0">
-        <img src={coin?.image.large} alt={coin?.name} className="md:w-50 md:h-50 w-35 h-35" />
+        <img src={coin?.image.large} alt={coin?.name} className="md:w-50 md:h-50 w-20 h-20" />
         <h1 className="font-bold md:text-5xl text-2xl">{coin?.name}</h1>
-        <div className="flex flex-col items-start justify-center gap-5 mt-3">
-          <p className="text-justify md:text-lg text-md md:mb-5">{coin?.description.en.split(". ")[0]}.</p>
+        <div className="flex flex-col items-start justify-center gap-2 mt-3">
+          <p className="text-justify md:text-lg text-md md:mb-3">{coin?.description.en.split(". ")[0]}.</p>
           <p className="md:text-2xl text-lg"> <span className="font-medium">Rank: </span>  {coin?.market_cap_rank}</p>
           <p className="md:text-2xl text-lg"> <span className="font-medium">Current Price:
           </span>  {sign} {formatCurrency(coin?.market_data.current_price[currency.toLowerCase()])}</p>
