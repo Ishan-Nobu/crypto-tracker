@@ -82,7 +82,8 @@ function CryptoChart({ crypto }) {
             <div className="flex flex-row items-center justify-center w-full gap-2 md:gap-4">
                 {daysData.map((day) => (
                     <button key={day.totalDays}
-                        className="md:text-lg font-bold text-xs md:border-4 border-2 border-amber-300 p-2 rounded-lg md:w-90 w-30 hover:bg-gray-600 ease-in-out cursor-pointer"
+                        className="md:text-lg font-bold text-xs md:border-4 border-2 border-amber-300 p-2 rounded-lg 
+                        md:w-90 w-50 hover:bg-gray-600 ease-in-out cursor-pointer"
                         onClick={debounce(() => setDays(day.totalDays), 1000)}>{day.label}</button>
                 ))}
             </div>

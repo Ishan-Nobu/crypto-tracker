@@ -55,13 +55,13 @@ function Sidebar() {
                     <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
                         <div className="flex flex-col md:w-150 md:p-20 p-10 h-full w-full">
                             <div className="flex flex-col items-center gap-20 h-9/10 md:w-full w-full">
-                                <div className="w-full h-9/10 flex flex-col items-center bg-gray-700 rounded-md gap-10 overflow-y-scroll p-10">
+                                <div className="w-full h-9/10 flex flex-col items-center bg-gray-700 rounded-md gap-5 overflow-y-scroll p-10">
                                     <h1 className="text-xl font-bold text-center mb-5"> Favourites </h1>
                                     {coinsList.map((coin) => {
                                         if (favouritesList.includes(coin?.id))
                                             return (
                                                 <div key={coin?.id} className="md:w-full w-full flex md:flex-row flex-col justify-between items-center
-                                                 bg-amber-300 text-black rounded-md mb-3 p-5 border-2 border-black">
+                                                 bg-amber-300 text-black rounded-md p-5 border-2 border-black">
                                                     <span className="cursor-pointer hover:text-blue-800 hover:underline" 
                                                     onClick={() => navigate(`/crypto/${coin?.id}`)} >{coin?.name}</span>
                                                     <span className="flex md:flex-row flex-col items-center gap-2">
@@ -71,7 +71,6 @@ function Sidebar() {
                                                     </span>
                                                 </div>
                                             );
-                                        else return <div key={coin?.id}></div>;
                                     })}
                                 </div>
                             </div>

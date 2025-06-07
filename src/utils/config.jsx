@@ -12,7 +12,7 @@ export const percentageChange = (priceChange) =>
 
 export const daysData = [
   {
-    label: "24 Hours",
+    label: "24 Hrs",
     totalDays: 1,
   },
   {
@@ -20,7 +20,7 @@ export const daysData = [
     totalDays: 30,
   },
   {
-    label: "3 Months",
+    label: "90 Days",
     totalDays: 90,
   },
   {
